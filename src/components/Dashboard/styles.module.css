@@ -1,0 +1,55 @@
+.burger_table {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.burger_table_heading,
+.burger_table_rows,
+.burger_table_row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.burger_table_heading {
+  font-weight: bold;
+  padding: 12px;
+  border-bottom: 3px solid #333;
+}
+
+.burger_table_row {
+  width: 100%;
+  padding: 12px;
+  border-bottom: 1px solid #ccc;
+}
+
+.burger_table_heading div,
+.burger_table_row div {
+  width: 19%;
+}
+
+.burger_table_heading .order_id,
+.burger_table_row .order_number {
+  width: 5%;
+}
+
+select {
+  padding: 12px 6px;
+  margin-right: 12px;
+}
+
+.delete_btn {
+  background-color: #222;
+  color: #fcba03;
+  font-weight: bold;
+  border: 2px solid #222;
+  padding: 10px;
+  font-size: 16px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.delete_btn:hover {
+  background-color: transparent;
+  color: #222;
+}

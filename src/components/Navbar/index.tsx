@@ -1,22 +1,21 @@
-import styles from './styles.module.css'
-
+import { Link } from 'react-router-dom';
+import styles from './styles.module.css';
 
 type NavbarProps = {
-    logo: string,
-    alt: string 
-}
+  logo: string;
+  altl: string;
+};
 
-
-export function Navbar({logo, alt}: NavbarProps){
-    return(
-        <div>
-            <div className={styles.nav}>
-                <a href="">
-                    <img className={styles.logo} src={logo} alt={alt} />
-                </a>
-                <a href='#'>Fazer Pedido</a>
-                <a>Pedidos</a>
-            </div>
-        </div>
-    )
+export function Navbar({ logo, altl }: NavbarProps) {
+  return (
+    <div>
+      <div className={styles.nav}>
+        <Link to='/' className={styles.logo_url}>
+          <img className={styles.logo} src={logo} alt={altl} />
+        </Link>
+        <Link to='/'>Fazer Pedido</Link>
+        <Link to='/orders'>Pedidos</Link>
+      </div>
+    </div>
+  );
 }

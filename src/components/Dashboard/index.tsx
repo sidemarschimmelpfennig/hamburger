@@ -1,44 +1,88 @@
+import { useState } from 'react';
+import styles from './styles.module.css';
 
+export function Dashboard() {
+  const [burgers, setBurgers] = useState([
+    {
+      id: 1,
+      name: '',
+      nome: '',
+      pao: '',
+      carne: '',
+      optcionais: [],
+      status: '',
+    },
+  ]);
+  const [status, setStatus] = useState([
+    {
+      id: 1,
+      name: 'teste',
+    },
+  ]);
 
-export function Dashboard(){
-    return(
-        <>
-        <div id="burger-table" v-if="burgers">
-            <div>
-            <div id="burger-table-heading">
-                <div class="order-id">#:</div>
-                <div>Cliente:</div>
-                <div>Pão:</div>
-                <div>Carne:</div>
-                <div>Opcionais:</div>
-                <div>Ações:</div>
+  return (
+    <>
+      {burgers && (
+        <div className={styles.burger_table}>
+          <div>
+            <div className={styles.burger_table_heading}>
+              <div className='order_id'>#:</div>
+              <div>Cliente:</div>
+              <div>Pão:</div>
+              <div>Carne:</div>
+              <div>Opcionais:</div>
+              <div>Ações:</div>
             </div>
-            </div>
-            <div id="burger-table-rows">
-            <div class="burger-table-row" v-for="burger in burgers" :key="burger.id">
-                <div class="order-number">{{ burger.id }}</div>
-                <div>{{ burger.nome }}</div>
-                <div>{{ burger.pao }}</div>
-                <div>{{ burger.carne }}</div>
-                <div>
-                <ul v-for="(opcional, index) in burger.opcionais" :key="index">
-                    <li>{{ opcional }}</li>
-                </ul>
-                </div>
-                <div>
-                <select name="status" class="status" @change="updateBurger($event, burger.id)">
-                    <option :value="s.tipo" v-for="s in status" :key="s.id" :selected="burger.status == s.tipo">
-                    {{ s.tipo }}
-                    </option>
-                </select>
-                <button class="delete-btn" @click="deleteBurger(burger.id)">Cancelar</button>
-                </div>
-            </div>
-            </div>
-            </div>
-            <div v-else>
-                <h2>Não há pedidos no momento!</h2>
-            </div>
-        </>
-    )
+          </div>
+          <div className={styles.burger_table_rows}>
+            {burgers &&
+              burgers.map((burger, index) => {
+                return (
+                  <div key={burger.id} className={styles.burger_table_row}>
+                    <div className={styles.order_number}>{burger.id}</div>
+                    <div>{burger.nome}</div>
+                    <div>{burger.pao}</div>
+                    <div>{burger.carne}</div>
+                    <div>
+                      <ul key='index'>
+                        {burger.optcionais &&
+                          burger.optcionais.map((option, index) => {
+                            return <li>{option}</li>;
+                          })}
+                      </ul>
+                    </div>
+                    <div>
+                      <select name='status' className={styles.status}>
+                        {status &&
+                          status.map(status => {
+                            return (
+                              <option
+                                value={status.name}
+                                key={status.id}
+                                selected={burger.status == status.name}
+                              >
+                                {' '}
+                                {status.name}
+                              </option>
+                            );
+                          })}
+                      </select>
+                      <button className={styles.delete_btn}>Cancelar</button>
+                    </div>
+                  </div>
+                );
+              })}
+
+            <div></div>
+          </div>
+        </div>
+      )}
+      :
+      {
+        <div>
+          <h2>Não há pedidos no momento!</h2>
+        </div>
+      }
+    </>
+  );
 }

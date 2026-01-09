@@ -4,7 +4,7 @@ import type { BurgersModel } from "../../models/BurgersModel";
 
 
 export type BurgerState = {
-  users: BurgersModel[];
+  burgers: BurgersModel[];
   loading: boolean;
 };
 
@@ -15,7 +15,7 @@ export type UserAction =
   | { type: "SET_LOADING"; payload: boolean };
 
 export const initialState: BurgerState = {
-  users: [],
+  burgers: [],
   loading: false,
 };
 
@@ -25,15 +25,15 @@ export function userReducer(state: BurgerState, action: UserAction): BurgerState
       return { ...state, loading: action.payload };
 
     case "SET_BURGERS":
-      return { ...state, users: action.payload };
+      return { ...state, burgers: action.payload };
 
     case "ADD_BURGER":
-      return { ...state, users: [...state.users, action.payload] };
+      return { ...state, burgers: [...state.burgers, action.payload] };
 
     case "REMOVE_BURGER":
       return {
         ...state,
-        users: state.users.filter(u => u.id !== action.payload),
+        burgers: state.burgers.filter(u => u.id !== action.payload),
       };
 
     default:

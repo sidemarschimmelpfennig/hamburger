@@ -1,39 +1,39 @@
-// context/UserReducer.ts
+// context/BurgerReducer.ts
 
 import type { BurgersModel } from "../../models/BurgersModel";
 
 
 export type BurgerState = {
-  users: BurgersModel[];
+  burgers: BurgersModel[];
   loading: boolean;
 };
 
-export type UserAction =
+export type BurgerAction =
   | { type: "SET_BURGERS"; payload: BurgersModel[] }
   | { type: "ADD_BURGER"; payload: BurgersModel }
   | { type: "REMOVE_BURGER"; payload: number }
   | { type: "SET_LOADING"; payload: boolean };
 
 export const initialState: BurgerState = {
-  users: [],
+  burgers: [],
   loading: false,
 };
 
-export function BurgerReducer(state: BurgerState, action: UserAction): BurgerState {
+export function BurgerReducer(state: BurgerState, action: BurgerAction): BurgerState {
   switch (action.type) {
     case "SET_LOADING":
       return { ...state, loading: action.payload };
 
     case "SET_BURGERS":
-      return { ...state, users: action.payload };
+      return { ...state, burgers: action.payload };
 
     case "ADD_BURGER":
-      return { ...state, users: [...state.users, action.payload] };
+      return { ...state, burgers: [...state.burgers, action.payload] };
 
     case "REMOVE_BURGER":
       return {
         ...state,
-        users: state.users.filter(u => u.id !== action.payload),
+        burgers: state.burgers.filter(u => u.id !== action.payload),
       };
 
     default:
